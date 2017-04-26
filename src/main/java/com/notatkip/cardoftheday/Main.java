@@ -1,5 +1,7 @@
 package com.notatkip.cardoftheday;
 
+import com.notatkip.cardoftheday.logic.CardHandler;
+
 import ratpack.guice.Guice;
 import ratpack.server.RatpackServer;
 
@@ -10,8 +12,7 @@ public class Main {
         RatpackServer.start(s -> s
             .registry(Guice.registry(b -> b.module(MyModule.class)))
             .handlers(chain -> chain             
-                .path("from-param", ctx -> ctx.render("Hello " + ctx.getRequest().getQueryParams().get("name") + "!"))
-                .path("injected", MyHandler.class)
+                .path("injected", CardHandler.class)
             )
         );
         // @formatter:on
