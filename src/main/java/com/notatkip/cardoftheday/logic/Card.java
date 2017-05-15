@@ -2,10 +2,6 @@ package com.notatkip.cardoftheday.logic;
 
 public class Card {
 
-    public enum Position {
-        UPRIGHT, REVERSED
-    }
-
     private int index;
 
     private String name;
@@ -13,6 +9,8 @@ public class Card {
     private String uprightMeaning;
 
     private String reversedMeaning;
+
+    private boolean uprightPosistion = true;
 
 
     public Card(int index, String name, String uprightMeaning, String reversedMeaning) {
@@ -60,6 +58,16 @@ public class Card {
 
     public void setReversedMeaning(String reversedMeaning) {
         this.reversedMeaning = reversedMeaning;
+    }
+
+
+    public boolean isUprightPosistion() {
+        return uprightPosistion;
+    }
+
+
+    public void setUprightPosistion(boolean uprightPosistion) {
+        this.uprightPosistion = uprightPosistion;
     }
 
 

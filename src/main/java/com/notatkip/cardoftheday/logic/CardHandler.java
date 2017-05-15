@@ -1,5 +1,7 @@
 package com.notatkip.cardoftheday.logic;
 
+import static ratpack.jackson.Jackson.json;
+
 import javax.inject.Singleton;
 
 import ratpack.handling.Context;
@@ -8,16 +10,17 @@ import ratpack.handling.Handler;
 @Singleton
 public class CardHandler implements Handler {
 
+    private Desk desk = new Desk();
+
+
     @Override
     public void handle(Context context) {
         int numberOfCard = new Integer(context.getRequest().getQueryParams().get("number"));
 
-        Desk desk = new Desk();
-        desk.shuffle();
-        desk.shuffleSecondMethod();
-        Card card = desk.getCard(numberOfCard);
+        desk.shuffleDesk();
+        desk.shuffleDeskSecondMethod();
 
-        context.render("hello " + context.getRequest().getQueryParams().get("name") + ", your card of the day is " + card.getIndex() + " (" + desk.size() + ")");
+        context.render(json(desk.getCard(numberOfCard)));
     }
 
 }
